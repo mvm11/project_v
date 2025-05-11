@@ -30,7 +30,7 @@ jobs:
         run: pip install --upgrade pip
 
       - name: Install dependencies
-        run: pip install -e .
+        run: pip install -r requirements.txt .
 
       - name: Run main script
         run: python src/crude_oil/main.py
