@@ -1,6 +1,7 @@
 import pandas as pd
 from collector import Collector
 from logger import Logger
+import os
 
 
 class CrudeOilDataPipeline:
@@ -20,8 +21,20 @@ class CrudeOilDataPipeline:
             self.logger.warning("CrudeOilDataPipeline", "run", "No data collected to save")
 
     def _save_to_csv(self, df: pd.DataFrame) -> None:
-        df.to_csv(self.OUTPUT_PATH, index=False)
-        self.logger.info("CrudeOilDataPipeline", "_save_to_csv", f"Data saved to {self.OUTPUT_PATH}")
+        try:
+            if os.path.exists(self.OUTPUT_PATH):
+                existing_df = pd.read_csv(self.OUTPUT_PATH)
+                combined_df = pd.concat([existing_df, df], ignore_index=True)
+                combined_df.drop_duplicates(subset=["date"], inplace=True)
+            else:
+                combined_df = df
+
+            combined_df.sort_values(by="date", ascending=False, inplace=True)
+            combined_df.to_csv(self.OUTPUT_PATH, index=False)
+            self.logger.info("CrudeOilDataPipeline", "_save_to_csv", f"Data saved and merged to {self.OUTPUT_PATH}")
+        except Exception as e:
+            self.logger.error("CrudeOilDataPipeline", "_save_to_csv", f"Failed to save CSV: {e}")
+
 
 
 def main():
