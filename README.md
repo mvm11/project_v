@@ -27,9 +27,9 @@ Este proyecto implementa un pipeline completo para el análisis, modelado y visu
    * Se evalúa con MAE y RMSE y se guarda en `static/models/model.pkl`.
 
 4. **Dashboard**
-
-   * Se generan gráficos con Matplotlib y una tabla de KPIs.
-   * Todo se guarda en `static/dashboard/` como PNGs y CSVs.
+   * Se generan un dashboard en Streamlit, en dashboard_streamlit.py
+   * Se generan, adicionalmente gráficos con Matplotlib y una tabla de KPIs.
+   * Los dos gráficos de MatplotLib se guarda en `static/dashboard/` como PNGs y CSVs.
 
 ---
 
