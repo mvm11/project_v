@@ -9,7 +9,7 @@ class Collector:
     CLASS_NAME = "Collector"
     DATA_FOLDER_PATH = 'src/crude_oil/static/data'
     STATIC_FOLDER_PATH = 'src/crude_oil/static'
-    BASE_URL = 'https://finance.yahoo.com/quote/CL%3DF/history/?period1=967003200&period2=1746999065'
+    BASE_URL = 'https://finance.yahoo.com/quote/CL%3DF/history/?period1=1590452357&period2=1748218465'
 
     def __init__(self, logger: Logger):
         self.logger = logger
